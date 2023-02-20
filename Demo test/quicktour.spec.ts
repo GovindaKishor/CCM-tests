@@ -1,0 +1,55 @@
+//A Quick tour through cases,tasks and client section.
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/auth');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/auth/login');
+  await page.getByRole('textbox', { name: 'username' }).fill('SUPERUSER');
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('SUPERUSER');
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.locator('.css-mslw24').first().click();
+  await page.getByRole('button', { name: 'Details Active' }).click();
+  await page.getByRole('button', { name: 'Details Active' }).click();
+  await page.getByRole('button', { name: 'Timeline' }).click();
+  await page.getByRole('button', { name: 'Timeline' }).click();
+  await page.getByRole('button', { name: 'Classifications' }).click();
+  await page.getByRole('button', { name: 'Classifications' }).click();
+  await page.getByRole('tab', { name: 'Customer' }).click();
+  await page.getByRole('button', { name: 'Transaction details' }).click();
+  await page.getByRole('button', { name: 'Transaction details' }).click();
+  await page.getByRole('button', { name: 'Related cases' }).click();
+  await page.getByRole('button', { name: 'Related cases' }).click();
+  await page.getByRole('tab', { name: 'Documents' }).click();
+  await page.getByRole('button', { name: 'Documents' }).click();
+  await page.getByRole('button', { name: 'New case' }).click();
+  await page.getByRole('button', { name: 'Open' }).click();
+  await page.getByRole('combobox', { name: 'Case type' }).click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByRole('group').getByRole('button').nth(1).click();
+  await page.getByText('New client group').click();
+  await page.getByRole('button', { name: 'Open' }).click();
+  await page.getByRole('combobox', { name: 'Tenant' }).click();
+  await page.getByLabel('Name *').click();
+  await page.getByLabel('Description').click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByRole('group').getByRole('button').nth(1).click();
+  await page.getByRole('menuitem', { name: 'Adhoc screening' }).click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByRole('link', { name: 'Tasks' }).click();
+  await page.getByText('HT-1', { exact: true }).click();
+  await page.getByRole('tab', { name: 'Documents' }).click();
+  await page.getByRole('tab', { name: 'Customer' }).click();
+  await page.getByRole('tab', { name: 'Task' }).click();
+  await page.getByRole('button', { name: 'Details open' }).click();
+  await page.getByRole('button', { name: 'Details open' }).click();
+  await page.getByRole('button', { name: 'Timeline' }).click();
+  await page.getByRole('button', { name: 'Timeline' }).click();
+  await page.getByRole('link', { name: 'Clients' }).click();
+  await page.getByText('Legal Entity').nth(1).click();
+  await page.getByRole('button', { name: 'Related cases' }).click();
+  await page.getByRole('button', { name: 'Related entities' }).click();
+});
