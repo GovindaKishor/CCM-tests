@@ -1,6 +1,4 @@
 //Test which will validate if content of report indicator field of a GoAml task have been translated after superuser language is changed.
-
-//As a  logged in user with access to a case,  I can process all tasks to which I have access to.
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
