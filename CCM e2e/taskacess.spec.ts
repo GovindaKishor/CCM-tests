@@ -19,8 +19,7 @@ test('test', async ({ page }) => {
   await page.getByRole('tab', { name: 'Customer' }).click();
   await page.getByRole('tab', { name: 'Documents' }).click();
   await page.getByRole('link', { name: 'Cases' }).click();
-  await page.getByText('C-6').click();
-  await page.getByText('C-6Default Siron CaseActiveCENL-1388688SironAMLCompanyLKM CORP20/02/20230 dayCol').dblclick();
+  await page.getByText('C-6').dblclick();
   await page.locator('.css-mslw24').click();
   await page.getByRole('tab', { name: 'Customer' }).click();
   await page.getByRole('tab', { name: 'Task' }).click();
