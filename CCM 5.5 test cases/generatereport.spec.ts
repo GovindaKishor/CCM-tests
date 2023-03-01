@@ -1,9 +1,10 @@
-//Complete a case(case 17).
+//Generate the report for a task.
 
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
   await page.goto('http://ccm-ci-5-5-x.imtf-devops.com:8181/auth/login');
+  await page.getByRole('textbox', { name: 'username' }).click();
   await page.getByRole('textbox', { name: 'username' }).fill('SUPERUSER');
   await page.getByLabel('Password *').click();
   await page.getByLabel('Password *').fill('SUPERUSER');
@@ -11,7 +12,6 @@ test('test', async ({ page }) => {
   await page.locator('.css-mslw24').first().click({
     button : 'right'
   });
-  await page.getByRole('menuitem', { name: 'Complete' }).click();
-  await page.getByLabel('Audit message').fill('Complete');
-  await page.getByRole('button', { name: 'Complete' }).click();
+  await page.getByRole('menuitem', { name: 'Generate a report' }).click();
+  await expect(page.locator('text=Generate report')).toHaveCount(1);
 });

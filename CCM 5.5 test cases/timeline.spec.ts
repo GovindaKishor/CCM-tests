@@ -1,5 +1,4 @@
-//Complete a case(case 17).
-
+//Exploring timeline of a case.
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
@@ -11,7 +10,9 @@ test('test', async ({ page }) => {
   await page.locator('.css-mslw24').first().click({
     button : 'right'
   });
-  await page.getByRole('menuitem', { name: 'Complete' }).click();
-  await page.getByLabel('Audit message').fill('Complete');
-  await page.getByRole('button', { name: 'Complete' }).click();
+  await page.getByRole('menuitem', { name: 'View timeline' }).click();
+  await page.getByRole('button', { name: 'Open' }).click();
+  await page.getByRole('button', { name: 'Toggle all' }).click();
+  await page.getByRole('button', { name: 'Toggle all' }).click();
+  await page.getByRole('button', { name: 'Export' }).click();
 });
