@@ -1,0 +1,44 @@
+//workbench section.
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/auth');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/auth/login');
+  await page.getByRole('textbox', { name: 'username' }).fill('SUPERUSER');
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('SUPERUSER');
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('link', { name: 'Workbench' }).click();
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/workbench/');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/workbench/auth');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/workbench');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/workbench/configs');
+  await page.locator('div:nth-child(3) > div > button').click();
+  await page.getByLabel('Name *').click();
+  await page.getByLabel('Name *').fill('Test1');
+  await page.getByLabel('Description').click();
+  await page.getByLabel('Description').fill('Example');
+  await page.getByLabel('Duplicate existing configuration').check();
+  await page.getByRole('button', { name: 'Open' }).click();
+  await page.getByRole('listbox', { name: 'Duplicate from' }).getByText('ccm 6.0.0-SNAPSHOT Fri Mar 3 05:56:31 CET 2023').click();
+  await page.getByRole('button', { name: 'Create' }).click();
+  await page.getByRole('menuitem', { name: 'Edit' }).locator('div').click();
+  await page.getByLabel('Description').click();
+  await page.getByLabel('Description').fill('Example testing');
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.locator('button').nth(2).click();
+  await page.getByRole('menuitem', { name: 'Publish Test' }).getByText('Publish Test').click();
+  await page.locator('button').nth(2).click();
+  await page.getByRole('menuitem', { name: 'Publish', exact: true }).getByText('Publish').click();
+  await page.getByRole('button', { name: 'Publish' }).click();
+  await page.locator('button').nth(2).click();
+  await page.getByRole('menuitem', { name: 'Validate' }).getByText('Validate').click();
+  await page.locator('button').nth(2).click();
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('menuitem', { name: 'Export' }).getByText('Export').click();
+  const download = await downloadPromise;
+  await page.locator('button').nth(2).click();
+  await page.getByRole('menuitem', { name: 'Duplicate' }).getByText('Duplicate').click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+});
