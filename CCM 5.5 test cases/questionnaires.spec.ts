@@ -14,7 +14,6 @@ test('test', async ({ page }) => {
   await page.getByRole('button').nth(0).click();
   await page.getByRole('option').nth(0).click();
   await page.getByRole('button').nth(3).click();
-  await page.pause();
   await page.getByRole('button').nth(4).click();
   await page.getByRole('link').nth(2).click();
   const fileChooserPromise1 = page.waitForEvent('filechooser');
