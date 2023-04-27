@@ -1,0 +1,50 @@
+//Tranlsation of timeline filter for the case.
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/auth');
+  await page.goto('http://ccm-ci-develop.imtf-devops.com:8181/auth/login');
+  await page.getByRole('textbox').nth(0).fill('SUPERUSER3');
+  await page.getByRole('textbox').nth(1).fill('SUPERUSER3');
+  await page.getByRole('button').nth(2).click();
+  await page.getByRole('button').nth(0).click();
+  await page.getByRole('menuitem').nth(1).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('option').nth(3).click();
+  await page.getByRole('link', { name: 'Cas' }).click();
+  await page.locator('div:nth-child(7) > .css-vd4mct > .css-19j5pqj > .MuiChip-root > .MuiChip-label').click();
+  await page.getByRole('button', { name: 'Chronologie' }).click();
+  await expect(page.locator('text=Cas')).not.toHaveCount(0);
+  await page.getByRole('button', { name: 'Ouvrir' }).click();
+  await expect(page.locator('text=Basculer tous')).not.toHaveCount(0);
+  await expect(page.locator('text=Commentaires')).not.toHaveCount(0);
+  await expect(page.locator('text=Événements de tâche')).not.toHaveCount(0);
+  await expect(page.locator('text=Evénements de cas')).not.toHaveCount(0);
+  await page.getByRole('button').nth(0).click();
+  await page.getByRole('menuitem').nth(1).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('option').nth(2).click();
+  await page.getByRole('link', { name: 'Cases' }).click();
+  await expect(page.locator('text=Zeitleiste')).not.toHaveCount(0);
+  await expect(page.locator('text=Case')).not.toHaveCount(0);
+  await page.getByRole('button', { name: 'Öffnen' }).click();
+  await expect(page.locator('text=Kommentare')).not.toHaveCount(0);
+  await expect(page.locator('text=Alle umschalten')).not.toHaveCount(0);
+  await expect(page.locator('text=Aufgabenereignisse')).not.toHaveCount(0);
+  await expect(page.locator('text=Fallereignisse')).not.toHaveCount(0);
+  await page.getByRole('button').nth(0).click();
+  await page.getByRole('menuitem').nth(1).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('option').nth(4).click();
+  await page.getByRole('link', { name: 'Casi' }).click();
+  await expect(page.locator('text=Sequenza temporale')).not.toHaveCount(0);
+  await expect(page.locator('text=Caso')).not.toHaveCount(0);
+  await expect(page.locator('text=Casi')).not.toHaveCount(0);
+  await page.getByRole('button', { name: 'Apri' }).click();
+  await expect(page.locator('text=Attiva/disattiva tutto')).not.toHaveCount(0);
+  await expect(page.locator('text=Commenti')).not.toHaveCount(0);
+  await expect(page.locator('text=Eventi del compito')).not.toHaveCount(0);
+  await expect(page.locator('text=Eventi del caso')).not.toHaveCount(0);
+});
