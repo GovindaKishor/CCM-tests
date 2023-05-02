@@ -1,0 +1,41 @@
+//No text overlapping in i18n _fr file section.
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8181/auth/login');
+  await page.getByRole('textbox').nth(0).fill('SUPERUSER');
+  await page.getByRole('textbox').nth(1).fill('SUPERUSER');
+  await page.getByRole('button').nth(2).click();
+  await page.getByRole('link').nth(3).click();
+  await page.locator('button').nth(-1).click();
+  await page.getByRole('textbox').nth(0).fill('Automation Testing');
+  await page.getByRole('radio').nth(0).check();
+  await page.getByRole('button').nth(0).click();
+  await page.getByRole('option').nth(0).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('button').nth(4).click();
+  await page.getByRole('link').nth(2).click();
+  await page.getByRole('treeitem', { name: 'i18n' }).locator('svg').click();
+  await page.getByRole('treeitem', { name: 'i18n' }).getByRole('treeitem', { name: 'forms' }).locator('svg').click();
+  await page.getByText('resources_fr.properties').dblclick();
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.businessId.title=Numéro de transaction (BusinessID)')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionBranch.title=Branche de transaction')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionEntryDate.title=Date de transaction')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionCurrency.title=Monnaie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionAmountOrigin.title=Montant')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionAmount.title=Locale')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionIsInbound.title=Entrante?')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionReason.title=Description de transaction')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraAccountHolder.title=Titulaire du compte de contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraAccountNumber.title=Numéro du compte de la contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraAccountBic.title=Bic du compte de la contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraAccountCountry.title=Pays du compte de la contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraCustomerNumber.title=Numéro de client de la contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraEmployeeNumber.title=Numéro')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraAccountOwnerFlag.title=Titulaire du compte de contrepartie signalé')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraBusinessType.title=Type du titulaire du compte de contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraHAccountNumber.title=Numéro du compte H de la contrepartie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraBusinessNumber.title=Numéro Business de la contrepaertie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionContraAccountCurrencyIso.title=Monnaie Iso du compte de contrepaertie')).toHaveCount(1);
+  await expect(page.locator('text=form_5_transactions.jsonSchema.properties.transactionGoAmlComments.title=Commentaires de transaction')).toHaveCount(1);
+});
