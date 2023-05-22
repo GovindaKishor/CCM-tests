@@ -1,0 +1,50 @@
+//Translation of client details into italino.
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://ccm-test.imtf-devops.com:8181/auth/login');
+  await page.getByRole('textbox').nth(0).fill('SUPERUSER');
+  await page.getByRole('textbox').nth(1).fill('SUPERUSER');
+  await page.getByRole('button').nth(2).click();
+  await page.getByRole('button').nth(0).click();
+  await page.getByRole('menuitem').nth(1).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('option').nth(4).click();
+  await page.getByRole('link', { name: 'Clienti' }).click();
+  await page.locator('div:nth-child(5) > .css-vd4mct > .css-mslw24').dblclick();
+  await expect(page.locator('text=Dati cliente')).not.toHaveCount(0);
+  await expect(page.locator('text=Analisi comportamentale')).not.toHaveCount(0);
+  await expect(page.locator('text=Rischio')).not.toHaveCount(0);
+  await page.getByText('Analisi comportamentale').click();
+  await expect(page.locator('text=Scarica CSV')).not.toHaveCount(0);
+  await expect(page.locator('text=Panoramica delle transazioni')).not.toHaveCount(0);
+  await expect(page.locator('text=Tutto')).not.toHaveCount(0);
+  await expect(page.locator('text=Ultimi 30 giorni')).not.toHaveCount(0);
+  await expect(page.locator('text=Tutti i pagamenti')).not.toHaveCount(0);
+  await expect(page.locator('text=Nessuna transazione trovata')).not.toHaveCount(0);
+  await expect(page.locator('text=Transazioni migliori')).not.toHaveCount(0);
+  await expect(page.locator('text=Paesi migliori')).not.toHaveCount(0);
+  await expect(page.locator('text=Tipo di transazioni')).not.toHaveCount(0);
+  await expect(page.locator('text=Casi correlati')).not.toHaveCount(0);
+  await expect(page.locator('text=Entità correlate')).not.toHaveCount(0);
+  await page.getByText('Rischio').click();
+  await expect(page.locator('text=Mostra cronologia')).not.toHaveCount(0);
+  await expect(page.locator('text=Livello di rischio manuale')).not.toHaveCount(0);
+  await expect(page.locator('text=Livello di rischio calcolato')).not.toHaveCount(0);
+  await expect(page.locator('text=Punteggio di rischio calcolato')).not.toHaveCount(0);
+  await expect(page.locator('text=Data di calcolo')).not.toHaveCount(0);
+  await expect(page.locator('text=Fattore di rischio')).not.toHaveCount(0);
+  await expect(page.locator('text=Valore')).not.toHaveCount(0);
+  await expect(page.locator('text=Punteggio')).not.toHaveCount(0);
+  await expect(page.locator('text=Tendenza storica del rischio')).not.toHaveCount(0);
+  await expect(page.locator('text=ultimi 10 voci')).not.toHaveCount(0);
+  await expect(page.locator('text=Nuovo gruppo di clienti')).not.toHaveCount(0);
+  await page.getByText('Mostra cronologia').click();
+  await expect(page.locator('text=Livello di rischio manuale')).not.toHaveCount(0);
+  await expect(page.locator('text=Livello di rischio calcolato')).not.toHaveCount(0);
+  await expect(page.locator('text=Punteggio di rischio calcolato')).not.toHaveCount(0);
+  await expect(page.locator('text=Data di calcolo')).not.toHaveCount(0);
+  await expect(page.locator('text=Cronologia dei rischi')).not.toHaveCount(0);
+  await page.getByText('Chiudi').click();
+});
