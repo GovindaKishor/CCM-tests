@@ -1,0 +1,54 @@
+//Warnings and alerts in system language.
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://ccm-test.imtf-devops.com:8181/auth/login');
+  await page.getByRole('textbox').nth(0).fill('SUPERUSER');
+  await page.getByRole('textbox').nth(1).fill('SUPERUSER');
+  await page.getByRole('button').nth(2).click();
+  await page.getByRole('button').nth(0).click();
+  await page.getByRole('menuitem').nth(1).click();
+  await page.getByRole('button').nth(3).click();
+  await page.getByRole('option').nth(3).click();
+  await page.getByRole('link', { name: 'Cas' }).click();
+  await page.getByText('C-2').click();
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Redémarrer' }).click();
+  await page.getByLabel('Message d\'audit').fill('Restart');
+  await page.getByRole('button', { name: 'Redémarrer' }).click();
+  await expect(page.getByText('text=Cas C-2 recommencè')).toHaveCount(1);
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Suspendre' }).click();
+  await page.getByLabel('Message d\'audit').fill('Suspend');
+  await page.getByRole('button', { name: 'Suspendre' }).click();
+  await expect(page.getByText('text=Cas C-2 suspendu')).toHaveCount(1);
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Ajouter un commentaire' }).click();
+  await page.getByRole('textbox', { name: 'Commentaire' }).fill('Commented');
+  await page.getByRole('button', { name: 'Envoyer' }).click();
+  await expect(page.getByText('text=Commentaire ajouté')).toHaveCount(1);
+  await page.getByRole('link', { name: 'Tâches' }).click();
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Affecter/désaffecter' }).click();
+  await page.getByRole('button', { name: 'Ouvrir' }).click();
+  await page.getByRole('option', { name: 'compliance1' }).click();
+  await page.getByRole('button', { name: 'Attribuer une tâche' }).click();
+  await expect(page.getByText('text=affectation a ètè')).toHaveCount(1);
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Déléguer' }).click();
+  await page.getByLabel('Utilisateur ou groupe').click();
+  await page.getByRole('option', { name: 'RiskAdmin' }).click();
+  await page.getByRole('button', { name: 'Déléguer une tâche' }).click();
+  await page.getByText('Délégué avec succès').click();
+  await expect(page.getByText('text=Dèlèguè avec succès')).toHaveCount(1);
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Réclamer' }).click();
+  await page.getByText('La tâche "HT-7" est réclamé avec succès').click();
+  await expect(page.getByText('text=La tâche "HT-7" est réclamé avec succès')).toHaveCount(1);
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByRole('button').first().click();
+  await page.getByRole('menuitem', { name: 'Ajouter un commentaire' }).click();
+  await page.getByRole('textbox', { name: 'Commentaire' }).fill('Commented');
+  await page.getByRole('button', { name: 'Envoyer' }).click();
+  await expect(page.getByText('text=Commentaire ajouté')).toHaveCount(1);
+});
