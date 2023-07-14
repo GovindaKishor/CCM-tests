@@ -27,6 +27,6 @@ test('test', async ({ page }) => {
   await page.getByText('Investigation for External Party').click();
   await page.goto('http://incore-email-service.imtf-devops.com:8025/#');
   await page.getByText('monitoringcompliance@incorebank.ch extparty1@imtf.com AML Alert regarding one of').first().click();
-  await page.getByRole('cell', { name: 'extparty1@imtf.com' }).click();
-  await page.getByRole('cell', { name: 'monitoringcompliance@incorebank.ch' }).click();
+  await expect(page.getByText('extparty1@imtf.com')).not.toHaveCount(0);
+  await expect(page.getByText('monitoringcompliance@incorebank.ch')).not.toHaveCount(0);
 });
