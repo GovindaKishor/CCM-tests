@@ -1,0 +1,30 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8181/auth/login');
+  await page.getByLabel('username').fill('SUPERUSER');
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('SUPERUSER');
+  await page.getByRole('button', { name: 'Log on' }).click();
+  await page.getByRole('button', { name: 'Create...' }).click();
+  await page.getByText('New case').click();
+  await page.getByLabel('Open').click();
+  await page.getByRole('option', { name: 'Onboarding Case' }).click();
+  await page.getByRole('button', { name: 'Create' }).click();
+  await page.getByText('HT-20').click();
+  await page.getByText('HT-20Data CaptureOpen17/11/2023').dblclick();
+  await page.locator('section').filter({ hasText: /^Account$/ }).getByRole('button').click();
+  await page.getByLabel('Account Number *').click();
+  await page.getByLabel('Account Number *').fill('1234');
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.locator('[data-test-id="virtuoso-item-list"]').getByText('Account Review').click();
+  await page.getByText('HT-21Account ReviewOpen17/11/2023').dblclick();
+  await page.locator('li').filter({ hasText: 'Additional Questions' }).locator('div').nth(2).click();
+  await page.getByLabel('Is Suspicious Account? *').click();
+  await page.getByRole('option', { name: 'Yes' }).click();
+  await page.getByRole('button', { name: 'Complete' }).click();
+  await page.locator('[data-test-id="virtuoso-item-list"]').getByText('Data Review').click();
+  await page.getByText('HT-22Data ReviewOpen17/11/2023').dblclick();
+  await page.getByRole('button', { name: 'Approve' }).click();
+});
