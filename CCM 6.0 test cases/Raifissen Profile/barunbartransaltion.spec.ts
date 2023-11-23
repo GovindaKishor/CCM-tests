@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8181/auth/login');
+  await page.getByLabel('username').fill('SUPERUSER1');
+  await page.getByLabel('Passwort *').click();
+  await page.getByLabel('Passwort *').fill('SUPERUSER1');
+  await page.getByRole('button', { name: 'Anmelden' }).click();
+  await page.getByRole('link', { name: 'Clienti' }).click();
+  await page.locator('.css-1dckd0x').first().click();
+  await page.getByText('Persona fisica14541127598453 04821C73DEC6F049C1172A7CD7EDCA5D 4909609BF338C63DF4').dblclick();
+  await page.getByRole('tab', { name: 'Analisi comportamentale' }).click();
+  await page.getByLabel('Choose date, selected date is 24 set 2023').first().click();
+  await page.getByLabel('calendar view is open, switch to year view').click();
+  await page.getByRole('radio', { name: '2015' }).click();
+  await page.getByText('contanti/ non in contanti').first().click();
+  await page.getByRole('button', { name: 'SS' }).click();
+  await page.getByRole('menuitem', { name: 'Impostazioni' }).click();
+  await page.getByRole('button', { name: 'Italiano' }).click();
+  await page.getByRole('option', { name: 'Français' }).click();
+  await page.getByRole('link', { name: 'Cas' }).click();
+  await page.getByRole('link', { name: 'Clients' }).click();
+  await page.locator('.css-1dckd0x').first().click();
+  await page.getByText('Personne physique14541127598453 04821C73DEC6F049C1172A7CD7EDCA5D 4909609BF338C63').dblclick();
+  await page.getByRole('tab', { name: 'Analyse comportementale' }).click();
+  await page.getByText('Espèces / sans espèces').first().click();
+  await page.getByRole('button', { name: 'SS' }).click();
+  await page.getByRole('menuitem', { name: 'Paramètres' }).click();
+  await page.getByRole('button', { name: 'Français' }).click();
+  await page.getByRole('option', { name: 'Deutsch' }).click();
+  await page.getByRole('link', { name: 'common.navigation.client_manager' }).click();
+  await page.locator('.css-1dckd0x').first().click();
+  await page.getByText('Natürliche Person14541127598453 04821C73DEC6F049C1172A7CD7EDCA5D 4909609BF338C63').dblclick();
+  await page.getByRole('tab', { name: 'Verhaltensanalyse' }).click();
+  await page.getByText('bar/unbar').first().click();
+});
