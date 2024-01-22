@@ -19,4 +19,5 @@ test('test', async ({ page }) => {
   await page.getByRole('option', { name: 'Yes' }).click();
   await page.getByRole('button', { name: 'Unusual-Activity Report' }).click();
   await expect(page.getByText('Case C-7 -')).not.toHaveCount(0);
+  await expect(page.getByText('Saved')).not.toHaveCount(0);
 });
