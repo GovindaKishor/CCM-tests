@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8181/auth/login');
+  await page.getByLabel('Username').fill('SUPERUSER1');
+  await page.getByLabel('Password', { exact: true }).click();
+  await page.getByLabel('Password', { exact: true }).fill('SUPERUSER1');
+  await page.getByRole('button', { name: 'Log on' }).click();
+  await page.getByRole('link', { name: 'Cases' }).click();
+  await page.locator('form div').filter({ hasText: 'Personal FiltersMy Cases My Previous Cases My Role\'s Cases' }).getByTitle('Reset filter').click();
+  await page.getByRole('button', { name: 'Reset filter' }).click();
+  await page.locator('[data-test-id="virtuoso-top-item-list"]').getByText('Origin').click();
+  await page.getByText('C-133ActiveCCMManual Risk Category ChangeRisk Scoring Alert09 Feb 2024, 20:27:34').click();
+  await page.getByRole('tab', { name: 'Documents' }).click();
+  await page.getByRole('button', { name: 'Documentum Secret' }).click();
+  await page.getByRole('button', { name: 'Documentum Compliance' }).click();
+  await page.getByRole('button', { name: 'Documentum Links' }).click();
+  await expect(page.getByText('Documentum Secret')).not.toHaveCount(0);
+  await expect(page.getByText('Documentum Compliance')).not.toHaveCount(0);
+  await expect(page.getByText('Documentum Links')).not.toHaveCount(0);
+  await expect(page.getByText('UPLOAD')).not.toHaveCount(0);
+  await page.getByText('C-134ActiveCCMParameters for risk calculationRisk Parameter Change09 Feb 2024, 2').click();
+  await expect(page.getByText('Documentum Secret')).not.toHaveCount(0);
+  await expect(page.getByText('Documentum Compliance')).not.toHaveCount(0);
+  await expect(page.getByText('Documentum Links')).not.toHaveCount(0);
+  await expect(page.getByText('UPLOAD')).not.toHaveCount(0);
+  await page.getByText('C-2ActiveSironAML999.0017637Transaction Monitoring PostTM Alert09 Feb 2024, 20:0').click();
+  await expect(page.getByText('Documentum Secret')).not.toHaveCount(0);
+  await expect(page.getByText('Documentum Compliance')).not.toHaveCount(0);
+  await expect(page.getByText('Documentum Links')).not.toHaveCount(0);
+  await expect(page.getByText('UPLOAD')).not.toHaveCount(0);
+});
