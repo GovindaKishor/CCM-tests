@@ -11,4 +11,6 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Client 360' }).click();
   await page.getByText('testing - CEMT').dblclick();
   await page.mouse.move(0, 1000);
+  await page.getByRole('tab', { name: 'Risk' }).click();
+  await page.mouse.move(0, 1000);
 });
