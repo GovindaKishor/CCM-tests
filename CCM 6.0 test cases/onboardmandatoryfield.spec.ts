@@ -1,0 +1,38 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:8181/');
+  await page.goto('http://localhost:8181/auth');
+  await page.goto('http://localhost:8181/auth/login');
+  await page.getByLabel('Username').fill('SUPERUSER');
+  await page.getByLabel('Password', { exact: true }).click();
+  await page.getByLabel('Password', { exact: true }).fill('SUPERUSER');
+  await page.getByRole('button', { name: 'Log on' }).click();
+  await page.getByRole('button', { name: 'Create...' }).click();
+  await page.getByRole('menuitem', { name: 'New case' }).click();
+  await page.getByLabel('Open').click();
+  await page.getByRole('option', { name: 'Onboarding Case' }).click();
+  await page.getByRole('button', { name: 'Create' }).click();
+  await page.getByTestId('virtuoso-item-list').getByText('Data Capture').click();
+  await page.getByText('HT-15Data CaptureOpen02/05/2024').dblclick();
+  await page.getByText('Natural Person').click();
+  await page.getByRole('main').getByRole('button').click();
+  await page.getByLabel('Full Name').click();
+  await page.getByLabel('Full Name').fill('Kishor');
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByText('Account').click();
+  await page.getByRole('main').getByRole('button').click();
+  await page.getByRole('dialog').locator('div').filter({ hasText: 'Account Number *Account Number *Submit' }).first().click();
+  await page.getByLabel('Account Number *').fill('1234');
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByText('Natural Person').click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.locator('span').filter({ hasText: 'Natural Person' }).click();
+  await page.getByRole('link', { name: 'Cases' }).first().click();
+  await page.getByTestId('virtuoso-item-list').getByText('Onboarding').click();
+  await page.getByText('C-16OnboardingActive').dblclick();
+  await page.getByTestId('virtuoso-item-list').getByText('Data Capture').click();
+  await page.getByText('HT-15Data CaptureOpen02/05/2024').dblclick();
+});
